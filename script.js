@@ -263,7 +263,7 @@ const scriptData = {
         ]
     },
     discovery: {
-        you: "Great! So <strong>[N]</strong>, I wanna ask you a couple questions so I understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br><span class='emphasis'>And what is most concerning/important to you when it comes to energy?</span><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
+        you: "Gotcha! So <strong>[N]</strong>, I wanna ask you a couple quick questions so I understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br><span class='emphasis'>And what is most concerning/important to you when it comes to energy?</span><br><br><strong><span class='emphasis'>And how has that impacted you and [CN]?</span></strong><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
         mood: "neutral",
         responses: [
             { text: "💚 Prospect is engaged / ready for appointment", next: "closeForAppointment" },
@@ -282,7 +282,7 @@ const scriptData = {
         ]
     },
     objHappyRate: {
-        you: "That's awesome you locked in a great price, but the Texas market has fundamentally shifted since most current contracts were signed. Even satisfied clients I work with find out they can get the same quality of service while still optimizing their energy cost by <span class='metric'>15-25%</span>. The question isn't whether you should leave your provider, it's whether you're maximized within the current market structure. Would it be worth refining what's already working for you for better results?",
+        you: "That's awesome you locked in a great price, however, the rules of Texas Energy have completely changed over the past few years. Even satisfied clients I work with are <span class='pause'>--</span>shocked to find out they that their supplier's new rate is about <span class='metric'>15-25%</span> more than what they were paying before. Would it be re-evaluating where you're at now, just to make sure <strong>[CN]</strong> isn't left paying more than they should?",
         mood: "positive",
         responses: [
             { text: "✅ Yes, worth understanding", next: "closeForAppointment" },
@@ -290,7 +290,7 @@ const scriptData = {
         ]
     },
     objHappyService: {
-        you: "That's great - good service is hard to find. What I'm seeing though is that satisfaction with service and optimization of costs are two separate conversations. The Texas market has fundamentally shifted since most current contracts were signed. Even satisfied clients I work with discover they can maintain the same service quality while improving their cost position by <span class='metric'>15-25%</span>. The question isn't whether you should leave your provider, it's whether you're maximized within the current market structure. Would it be worth understanding what optimal positioning looks like in today's market?",
+        you: "That's great - good service is hard to find. What I'm seeing though is that satisfaction with service and getting the best price are two separate conversations. The Texas energy market rules have changed significantly over the past few years. Even satisfied clients I work with discover they can can save <span class='metric'>15-25%</span> without sacrificing great customer service. Would it be worth looking into some options just to see if there is something more affordable for <strong>[CN]</strong>?",
         mood: "positive",
         responses: [
             { text: "✅ Yes, worth understanding", next: "closeForAppointment" },
@@ -306,7 +306,7 @@ const scriptData = {
         ]
     },
     objNoTime: {
-        you: "I completely get it <span class='pause'>--</span> that's exactly why most businesses end up overpaying. Energy procurement requires ongoing attention that most internal teams don't have bandwidth for. Here's what I'd suggest <span class='pause'>--</span> give me <span class='emphasis'>10 minutes</span> to review your current setup against market benchmarks. I'll tell you exactly where you stand competitively, and if there's no opportunity, I'll tell you that too. No sales pitch, just market intelligence. Would Friday morning or Monday afternoon work better for a brief assessment?",
+        you: "I completely get it <span class='pause'>--</span> that's exactly why most businesses end up overpaying. Energy is a complicated market that requires ongoing attention that most internal teams <span class='pause'>--</span> simply don't have time for. Here's what I'd suggest <span class='pause'>--</span> give me <span class='emphasis'>10 minutes</span> to review your current setup <span class='pause'>--</span> against where we are today. And that should be able tell you exactly where you stand and what you should be expecting for the future. Would that be helpful for you?",
         mood: "challenging",
         responses: [
             { text: "✅ Yes, schedule 10-minute assessment", next: "scheduleAppointment" },
@@ -322,7 +322,7 @@ const scriptData = {
         ]
     },
     closeForAppointment: {
-        you: "Based on what you shared, <strong>[N]</strong> I really think you'll be able to benefit from <span class='emphasis'>[SB]</span> that way you won't have to <span class='emphasis'>[PP]</span>. Our process is super simple! We start with an <span class='emphasis'>energy health check</span> where I look at your usage, contract terms, and then we can talk about what options are available for <strong>[CN]</strong>. It should take <span class='emphasis'>10-15 minutes</span> of your time. Would you prefer to connect this <span class='emphasis'>Friday morning around 11 AM</span>, or would <span class='emphasis'>Monday afternoon around 2 PM</span> work better for your schedule?",
+        you: "Awesome! So, <strong>[N]</strong>, based on what you shared with me <span class='pause'>--</span> I really believe you'll be able to benefit from <span class='emphasis'>[SB]</span> that way you won't have to <span class='emphasis'>[PP]</span>. Our process is super simple! We start with an <span class='emphasis'>energy health check</span> where I look at your usage, contract terms, and then we can talk about what options might look like for <strong>[CN]</strong> moving forward. It should take <span class='emphasis'>10-15 minutes</span> of your time. Would you prefer to connect this <span class='emphasis'>Friday morning around 11 AM</span>, or would <span class='emphasis'>Monday afternoon around 2 PM</span> work better for your schedule?",
         mood: "positive",
         responses: [
             { text: "📅 Schedule Friday 11 AM", next: "appointmentConfirmed" },
@@ -331,7 +331,7 @@ const scriptData = {
         ]
     },
     scheduleAppointment: {
-        you: "Perfect! Let's get that <span class='emphasis'>10-minute market assessment</span> scheduled. I'll walk through your current position, show you the competitive landscape, and outline 2-3 strategic options based on your specific situation. Would <span class='emphasis'>Friday morning</span> or <span class='emphasis'>Monday afternoon</span> work better?",
+        you: "Perfect! Let's get that <span class='emphasis'>10-minute market assessment</span> scheduled. I'll walk through your current situation, show you common supplier traps, and outline 2-3 strategic options based on your specific situation. Would <span class='emphasis'>Friday morning</span> or <span class='emphasis'>Monday afternoon</span> work better?",
         mood: "positive",
         responses: [
             { text: "📅 Friday morning works", next: "appointmentConfirmed" },
