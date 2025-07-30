@@ -32,10 +32,8 @@ const inputMap = {
     'input-pain': 'PP'
 };
 
-// --- FIX: openSearch function no longer needs 'event' parameter directly from HTML onclick ---
-// Event listeners will be added in JS, passing the event object.
-function openSearch(type, event) {
-    // 'event' is now correctly passed by the addEventListener
+// --- openSearch function now correctly handles event object passed by addEventListener ---
+function openSearch(type, event) { // 'event' parameter is explicitly defined here
     const button = event.target.closest('.app-button');
     if (currentSearchType === type && activeButton === button) {
         closeSearch();
@@ -639,3 +637,4 @@ function clearNotes() {
 }
 
 // Initialize the script display when the page loads
+displayCurrentStep();
