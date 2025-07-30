@@ -314,7 +314,7 @@ const scriptData = {
         ]
     },
     handleHesitation: {
-        you: "I get it <span class='pause'>--</span> energy strategy isn't urgent until it becomes a necessity. How about this <span class='pause'>--</span> let me put together a quick case study specific to companies in your situation. Takes me about 10 minutes to prepare, and it'll give you a baseline for understanding your options. No commitment, just information that might be useful for your planning. Sound reasonable?",
+        you: "I get it <span class='pause'>--</span> And called you out the blue so now is probably not the best time. How about this <span class='pause'>--</span> let me put together a quick case study specific to <span class='emphasis'>[TIA]</span>s in your area. Takes me about 10 minutes to prepare, it'll give you a snapshot into the market and it'll show you what other companies are doing to stay afloat in today's market.<br><br><strong><span class='emphasis'>Would that be useful for your future planning?</span></strong>",
         mood: "unsure",
         responses: [
             { text: "✅ Yes, send analysis", next: "getEmail" },
