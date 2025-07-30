@@ -154,27 +154,29 @@ body {
     max-width: 1400px;
     width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 40px 20px;
     display: grid;
     grid-template-columns: 1fr 350px;
     gap: 30px;
     flex-grow: 1;
     overflow: hidden;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
 }
 .container.search-active {
     padding-top: 100px;
-    height: calc(100vh - 180px);
+    padding-bottom: 40px;
+    height: calc(100vh - 200px);
 }
 .main-content {
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0,0,0,.08);
-    padding: 40px;
+    padding: 40px 40px 50px 40px;
     border: 1px solid rgba(30,90,168,.1);
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: auto;
 }
 .sidebar {
     display: flex;
@@ -264,6 +266,8 @@ body {
     gap: 15px;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
 }
 .nav-btn {
     background: linear-gradient(135deg, #1A438D 0%, #2563EB 100%);
@@ -468,13 +472,15 @@ body {
     .container {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding-top: 160px;
+        padding: 160px 20px 40px 20px;
         height: auto;
+        min-height: calc(100vh - 180px);
         overflow: visible;
     }
     .container.search-active {
-        padding-top: 240px;
+        padding: 240px 20px 40px 20px;
         height: auto;
+        min-height: calc(100vh - 260px);
     }
     .sidebar {
         flex-direction: row;
@@ -496,9 +502,17 @@ body {
     .nav-icons-center {gap: 30px;}
 }
 @media (max-width: 768px) {
-    .container {padding: 15px; padding-top: 140px;}
-    .container.search-active {padding-top: 210px;}
-    .main-content {padding: 25px;}
+    .container {
+        padding: 140px 15px 30px 15px;
+        min-height: calc(100vh - 160px);
+    }
+    .container.search-active {
+        padding: 210px 15px 30px 15px;
+        min-height: calc(100vh - 230px);
+    }
+    .main-content {
+        padding: 25px 25px 35px 25px;
+    }
     .script-display {padding: 25px; font-size: 1.1rem; min-height: 120px;}
     .responses-grid {grid-template-columns: 1fr; gap: 15px;}
     .response-btn {padding: 18px 20px; font-size: .95rem;}
@@ -516,9 +530,17 @@ body {
     .nav-icons-center {gap: 20px;}
 }
 @media (max-width: 480px) {
-    .container {padding: 10px; padding-top: 130px;}
-    .container.search-active {padding-top: 190px;}
-    .main-content {padding: 20px;}
+    .container {
+        padding: 130px 10px 25px 10px;
+        min-height: calc(100vh - 150px);
+    }
+    .container.search-active {
+        padding: 190px 10px 25px 10px;
+        min-height: calc(100vh - 210px);
+    }
+    .main-content {
+        padding: 20px 20px 30px 20px;
+    }
     .script-display {padding: 20px; font-size: 1rem; line-height: 1.6;}
     .nav-container {gap: 10px; justify-content: space-around;}
     .app-button {width: 55px; height: 55px;}
