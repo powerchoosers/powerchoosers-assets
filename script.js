@@ -161,7 +161,8 @@ const scriptData = {
             { text: "✅ Yes, this is [N]", next: "main_script_start" },
             { text: "🗣️ Speaking", next: "main_script_start" },
             { text: "❓ Who's calling?", next: "main_script_start" },
-            { text: "👥 Gatekeeper / Not the right person", next: "gatekeeper_intro" }
+            { text: "👥 Gatekeeper / Not the right person", next: "gatekeeper_intro" },
+            { text: "🔄 Transferred to Decision Maker", next: "main_script_start" }
         ]
     },
     main_script_start: {
