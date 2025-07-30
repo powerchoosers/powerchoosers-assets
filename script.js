@@ -32,8 +32,8 @@ const inputMap = {
     'input-pain': 'PP'
 };
 
-// --- openSearch function now correctly handles event object passed by addEventListener ---
-function openSearch(type, event) { // 'event' parameter is explicitly defined here
+// --- RESTORED SEARCH FUNCTIONS ---
+function openSearch(type, event) { // 'event' parameter is correctly passed by addEventListener
     const button = event.target.closest('.app-button');
     if (currentSearchType === type && activeButton === button) {
         closeSearch();
@@ -122,6 +122,7 @@ function performSearch() {
         closeSearch();
     }
 }
+// --- END RESTORED SEARCH FUNCTIONS ---
 
 // Add event listeners for Enter key on search inputs
 ['search-input', 'search-city', 'search-state', 'search-location'].forEach(id => {
@@ -638,3 +639,25 @@ function clearNotes() {
 
 // Initialize the script display when the page loads
 displayCurrentStep();
+
+// --- NEW: Add event listeners to search app buttons dynamically ---
+// This ensures the openSearch function is called with the correct 'event' object.
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if the elements exist before adding listeners to prevent errors on pages without them
+    const googleBtn = gId('google-button');
+    if (googleBtn) {
+        googleBtn.addEventListener('click', (e) => openSearch('google', e));
+    }
+    const mapsBtn = gId('maps-button');
+    if (mapsBtn) {
+        mapsBtn.addEventListener('click', (e) => openSearch('maps', e));
+    }
+    const apolloBtn = gId('apollo-button');
+    if (apolloBtn) {
+        apolloBtn.addEventListener('click', (e) => openSearch('apollo', e));
+    }
+    const beenverifiedBtn = gId('beenverified-button');
+    if (beenverifiedBtn) {
+        beenverifiedBtn.addEventListener('click', (e) => openSearch('beenverified', e));
+    }
+});
