@@ -262,7 +262,7 @@ const scriptData = {
         ]
     },
     discovery: {
-        you: "Great! Let me ask you a few questions to understand your situation better. <span class='pause'>--</span> What's your current approach to electricity procurement <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br>And <span class='emphasis'>what is most important to you when it comes to energy?</span><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
+        you: "Great! I wanna ask you few questions so i understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br>And <span class='emphasis'>what is most important to you when it comes to energy?</span><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
         mood: "neutral",
         responses: [
             { text: "💚 Prospect is engaged / ready for appointment", next: "closeForAppointment" },
@@ -405,7 +405,7 @@ const scriptData = {
         ]
     },
     getEmail: {
-        you: "Great! I'll put together that market analysis specific to <span class='emphasis'>[TIA]</span>. It takes me about 10 minutes to prepare, and it'll give you a baseline understanding of where your company stands competitively. I can email that over by tomorrow, and if you see value in diving deeper, we can schedule a brief follow-up. What's the best email for market intelligence like this?",
+        you: "Great! I'll put together a case study specific to <span class='emphasis'>[TIA]</span>s. It takes me about 10 minutes to put together, and it'll give you a baseline understanding of where your company stands competitively. I can email that over by tomorrow, and if you see value in diving deeper, we can schedule a brief follow-up. What's a good email for you?",
         mood: "unsure",
         responses: [
             { text: "📧 Provide email address", next: "emailFollowUp" },
