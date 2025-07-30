@@ -262,7 +262,7 @@ const scriptData = {
         ]
     },
     discovery: {
-        you: "Great! So <strong>[N]</strong> I wanna ask you a couple questions so i understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant? And what is most concerning/important to you when it comes to energy?<br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
+        you: "Great! So <strong>[N]</strong>, I wanna ask you a couple questions so I understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br><span class='emphasis'>And what is most concerning/important to you when it comes to energy?</span><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
         mood: "neutral",
         responses: [
             { text: "💚 Prospect is engaged / ready for appointment", next: "closeForAppointment" },
@@ -305,7 +305,7 @@ const scriptData = {
         ]
     },
     objNoTime: {
-        you: "I completely get it <span class='pause'>--</span> that's exactly why most businesses end up overpaying. Energy procurement requires ongoing attention that most internal teams don't have bandwidth for. Here's what I'd suggest <span class='pause'>--</span> give me <span class='emphasis'>10 minutes</span> to review your current setup against market benchmarks. I'll tell you exactly where you stand competitively, and if there's no opportunity, I'll tell you that too. No sales pitch, just market intelligence. Would Thursday afternoon or Friday morning work better for a brief assessment?",
+        you: "I completely get it <span class='pause'>--</span> that's exactly why most businesses end up overpaying. Energy procurement requires ongoing attention that most internal teams don't have bandwidth for. Here's what I'd suggest <span class='pause'>--</span> give me <span class='emphasis'>10 minutes</span> to review your current setup against market benchmarks. I'll tell you exactly where you stand competitively, and if there's no opportunity, I'll tell you that too. No sales pitch, just market intelligence. Would Friday morning or Monday afternoon work better for a brief assessment?",
         mood: "challenging",
         responses: [
             { text: "✅ Yes, schedule 10-minute assessment", next: "scheduleAppointment" },
@@ -321,20 +321,20 @@ const scriptData = {
         ]
     },
     closeForAppointment: {
-        you: "I really think you'll be able to benefit from <span class='emphasis'>[SB]</span> that way you won't have to <span class='emphasis'>[PP]</span>. We start with an <span class='emphasis'>energy health check</span> where I look at your usage, contract terms, and then we can talk about what options are available. It should take <span class='emphasis'>10-15 minutes</span> of your time. Would you prefer to connect this <span class='emphasis'>Thursday afternoon around 2 PM</span>, or would <span class='emphasis'>Friday morning around 10 AM</span> work better for your schedule?",
+        you: "Based on what you shared, <strong>[N]</strong> I really think you'll be able to benefit from <span class='emphasis'>[SB]</span> that way you won't have to <span class='emphasis'>[PP]</span>. Our process is super simple! We start with an <span class='emphasis'>energy health check</span> where I look at your usage, contract terms, and then we can talk about what options are available for <strong>[CN]</strong>. It should take <span class='emphasis'>10-15 minutes</span> of your time. Would you prefer to connect this <span class='emphasis'>Friday morning around 11 AM</span>, or would <span class='emphasis'>Monday afternoon around 2 PM</span> work better for your schedule?",
         mood: "positive",
         responses: [
-            { text: "📅 Schedule Thursday 2 PM", next: "appointmentConfirmed" },
-            { text: "📅 Schedule Friday 10 AM", next: "appointmentConfirmed" },
+            { text: "📅 Schedule Friday 11 AM", next: "appointmentConfirmed" },
+            { text: "📅 Schedule Monday 2 PM", next: "appointmentConfirmed" },
             { text: "🤔 Still hesitant", next: "getEmail" }
         ]
     },
     scheduleAppointment: {
-        you: "Perfect! Let's get that <span class='emphasis'>10-minute market assessment</span> scheduled. I'll walk through your current position, show you the competitive landscape, and outline 2-3 strategic options based on your specific situation. Would <span class='emphasis'>Thursday afternoon</span> or <span class='emphasis'>Friday morning</span> work better?",
+        you: "Perfect! Let's get that <span class='emphasis'>10-minute market assessment</span> scheduled. I'll walk through your current position, show you the competitive landscape, and outline 2-3 strategic options based on your specific situation. Would <span class='emphasis'>Friday morning</span> or <span class='emphasis'>Monday afternoon</span> work better?",
         mood: "positive",
         responses: [
-            { text: "📅 Thursday afternoon works", next: "appointmentConfirmed" },
-            { text: "📅 Friday morning works", next: "appointmentConfirmed" }
+            { text: "📅 Friday morning works", next: "appointmentConfirmed" },
+            { text: "📅 Monday afternoon works", next: "appointmentConfirmed" }
         ]
     },
     appointmentConfirmed: {
