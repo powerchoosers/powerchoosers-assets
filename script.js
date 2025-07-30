@@ -194,7 +194,7 @@ const scriptData = {
         ]
     },
     voicemail: {
-        you: "Good afternoon/morning <strong>[N]</strong>, this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. Thank you so much and you have a great day.",
+        you: "Good afternoon/morning <strong>[N]</strong>, this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. Thank you so much and we'll connect soon.",
         mood: "neutral",
         responses: [
             { text: "🔄 End Call / Start New Call", next: "start" }
