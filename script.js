@@ -248,7 +248,7 @@ const scriptData = {
         ]
     },
     resBroker: {
-        you: "That's smart <span class='pause'>--</span> having someone who understands the Texas market is crucial right now. Because there's some huge changes happening right now that could impact your costs significantly. Would it be worth understanding what that looks like, even if you're happy with your current relationship?",
+        you: "That's smart <span class='pause'>--</span> having someone who understands the Texas market is crucial right now. Have they let you know about ERCOT's supply concerns for 2026? Because there's some huge changes happening right now that could impact <strong>[CN]</strong>'s costs significantly. Would it be worth understanding what that looks like, even if you're happy with your current relationship?",
         mood: "neutral",
         responses: [
             { text: "🎯 Continue to Discovery", next: "discovery" }
@@ -262,7 +262,7 @@ const scriptData = {
         ]
     },
     discovery: {
-        you: "Great! I wanna ask you few questions so i understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br>And <span class='emphasis'>what is most important to you when it comes to energy?</span><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
+        you: "Great! So <strong>[N]</strong> I wanna ask you a couple questions so i understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant? And what is most concerning/important to you when it comes to energy?<br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
         mood: "neutral",
         responses: [
             { text: "💚 Prospect is engaged / ready for appointment", next: "closeForAppointment" },
@@ -313,7 +313,7 @@ const scriptData = {
         ]
     },
     handleHesitation: {
-        you: "I get it <span class='pause'>--</span> energy strategy isn't urgent until it becomes critical. How about this <span class='pause'>--</span> let me put together a quick case study specific to companies in your situation. Takes me about 10 minutes to prepare, and it'll give you a baseline for understanding your options. No commitment, just information that might be useful for your planning. Sound reasonable?",
+        you: "I get it <span class='pause'>--</span> energy strategy isn't urgent until it becomes a necessity. How about this <span class='pause'>--</span> let me put together a quick case study specific to companies in your situation. Takes me about 10 minutes to prepare, and it'll give you a baseline for understanding your options. No commitment, just information that might be useful for your planning. Sound reasonable?",
         mood: "unsure",
         responses: [
             { text: "✅ Yes, send analysis", next: "getEmail" },
