@@ -180,7 +180,7 @@ const scriptData = {
         mood: "neutral",
         responses: [
             { text: "❓ What's this about?", next: "gatekeeper_whats_about" },
-            { text: "🔗 I'll connect you", next: "main_script_start" },
+            { text: "🔗 I'll connect you", next: "dialing" },
             { text: "🚫 They're not available / Take a message", next: "voicemail" }
         ]
     },
@@ -188,7 +188,7 @@ const scriptData = {
         you: "My name is Lewis with PowerChoosers.com and I'm needin' to speak with someone about the future electricity agreements for <strong>[CN]</strong>. Do you know who might be the best person for that?",
         mood: "neutral",
         responses: [
-            { text: "🔗 I'll connect you", next: "main_script_start" },
+            { text: "🔗 I'll connect you", next: "dialing" },
             { text: "🚫 They're not available / Take a message", next: "voicemail" },
             { text: "✅ I can help you", next: "pathA" }
         ]
