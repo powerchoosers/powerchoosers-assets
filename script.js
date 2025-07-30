@@ -171,8 +171,7 @@ const scriptData = {
             { text: "✅ Yes, that's me / I handle that", next: "pathA" },
             { text: "👥 That would be [OP] / Not the right person", next: "gatekeeper_intro" },
             { text: "🤝 We both handle it / Team decision", next: "pathA" },
-            { text: "🤔 Unsure or hesitant", next: "pathD" },
-            { text: "📞 Leave Voicemail", next: "voicemail" }
+            { text: "🤔 Unsure or hesitant", next: "pathD" }
         ]
     },
     gatekeeper_intro: {
