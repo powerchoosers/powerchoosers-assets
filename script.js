@@ -166,7 +166,7 @@ const scriptData = {
         ]
     },
     main_script_start: {
-        you: "Good mornin'! This is <strong>[YN]</strong> <span class='pause'>--</span> and I'm needin' to speak with someone over electricity agreements and contracts at <strong>[CN]</strong> <span class='pause'>--</span> would that be yourself, or should I be speaking with someone else?",
+        you: "Good mornin'/afternoon, <strong>[N]</strong>! This is <strong>[YN]</strong> <span class='pause'>--</span> and I'm needin' to speak with someone over electricity agreements and contracts at <strong>[CN]</strong> <span class='pause'>--</span> would that be yourself?",
         mood: "neutral",
         responses: [
             { text: "✅ Yes, that's me / I handle that", next: "pathA" },
