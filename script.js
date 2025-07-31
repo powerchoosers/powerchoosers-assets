@@ -180,7 +180,7 @@ const scriptData = {
         mood: "neutral",
         responses: [
             { text: "❓ What's this about?", next: "gatekeeper_whats_about" },
-            { text: "🔗 I'll connect you", next: "dialing" },
+            { text: "🔗 I'll connect you", next: "transfer_dialing" },
             { text: "🚫 They're not available / Take a message", next: "voicemail" }
         ]
     },
@@ -188,7 +188,7 @@ const scriptData = {
         you: "My name is Lewis with PowerChoosers.com and I'm needin' to speak with someone about the future electricity agreements for <strong>[CN]</strong>. Do you know who might be the best person for that?",
         mood: "neutral",
         responses: [
-            { text: "🔗 I'll connect you", next: "dialing" },
+            { text: "🔗 I'll connect you", next: "transfer_dialing" },
             { text: "🚫 They're not available / Take a message", next: "voicemail" },
             { text: "✅ I can help you", next: "pathA" }
         ]
@@ -435,13 +435,14 @@ const scriptData = {
             { text: "🔄 Start New Call", next: "start" }
         ]
     },
-    callEnd: {
-        you: "No problem at all. Thank you for your time, <strong>[N]</strong>. Have a great day!<br><br>📝 <strong>Call Notes:</strong><br>• Mark as 'Not Interested' in CRM<br>• Note any specific objections or concerns<br>• Consider different approach for future outreach<br>• Update contact preferences",
-        mood: "resistant",
+    transfer_dialing: {
+        you: "Being transferred... Ringing...",
+        mood: "neutral",
         responses: [
-            { text: "🔄 Start New Call", next: "start" }
+            { text: "📞 Decision Maker Answers", next: "main_script_start" },
+            { text: "🚫 No Answer", next: "voicemail_or_hangup" }
         ]
-    }
+    },
 };
 
 let currentStep = 'start';
