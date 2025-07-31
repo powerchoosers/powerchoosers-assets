@@ -282,7 +282,7 @@ const scriptData = {
         ]
     },
     objHappyRate: {
-        you: "That's awesome you locked in a great price, however, the rules of Texas Energy have completely changed over the past few years. Even satisfied clients I work with are <span class='pause'>--</span>shocked to find out they that their supplier's new rate is about <span class='metric'>15-25%</span> more than what they were paying before. Would it be re-evaluating where you're at now, just to make sure <strong>[CN]</strong> isn't left paying more than they should?",
+        you: "That's awesome you locked in a great price, however, the rules of Texas Energy have completely changed over the past few years. Even satisfied clients I work with are <span class='pause'>--</span>shocked to find out they that their supplier's new rate is about <span class='metric'>15-25%</span> more than what they were paying before. Would it be worth re-evaluating where you're at now, just to make sure <strong>[CN]</strong> isn't left paying more than they should?",
         mood: "positive",
         responses: [
             { text: "✅ Yes, worth understanding", next: "closeForAppointment" },
