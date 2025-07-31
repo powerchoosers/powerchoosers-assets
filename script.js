@@ -201,7 +201,7 @@ const scriptData = {
         ]
     },
     pathA: {
-        you: "Perfect <span class='pause'>--</span> So I'm calling with PowerChoosers.com and I've been working closely with <strong>[CI]</strong>s across Texas with electricity agreements <span class='pause'>--</span> How are you guys handling these sharp rate increases on your future renewals?<br><br>And quick follow-up <span class='pause'>--</span> <span class='emphasis'>do you know when your contract expires?</span>",
+        you: "Perfect <span class='pause'>--</span> So I'm calling with PowerChoosers.com and I've been working closely with <strong>[CI]</strong>s across Texas with electricity agreements over the past several years <span class='pause'>--</span> How are you guys handling these sharp rate increases on your future renewals?<br><br>And quick follow-up <span class='pause'>--</span> <span class='emphasis'>do you know when your contract expires?</span>",
         mood: "neutral",
         responses: [
             { text: "😰 Struggling / It's tough", next: "resStruggle" },
