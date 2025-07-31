@@ -194,7 +194,7 @@ const scriptData = {
         ]
     },
     voicemail: {
-        you: "Good afternoon/morning <strong>[N]</strong>, this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. Thank you so much and we'll connect soon.",
+        you: "Good afternoon/morning <strong>[N]</strong>, this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. The email should be coming from Lewis Patterson that's (L.E.W.I.S) Thank you so much and you have a great day.",
         mood: "neutral",
         responses: [
             { text: "🔄 End Call / Start New Call", next: "start" }
@@ -228,7 +228,7 @@ const scriptData = {
         ]
     },
     resNotRenewed: {
-        you: "Actually, that timing works in your favor. Most businesses wait until 60-90 days before expiration to start looking, but with the market set to increase in 2026, people are planning in advance to avoid paying more. Are you guys planning to handle the renewal internally, or have you worked with someone on energy procurement before?",
+        you: "Actually, that timing works in your favor. Most businesses wait until 60-90 days before expiration to start looking, but with the market set to increase in 2026, people are reserving their rates in advance to avoid paying more in the future. Do you currently have a plan in place to <span class='pause'>--</span> mitigate these increases?",
         mood: "positive",
         responses: [
             { text: "🎯 Continue to Discovery", next: "discovery" }
@@ -263,7 +263,7 @@ const scriptData = {
         ]
     },
     discovery: {
-        you: "Gotcha! So <strong>[N]</strong>, I wanna ask you a couple quick questions so I understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br><span class='emphasis'>And what is most concerning/important to you when it comes to energy?</span><br><br><strong><span class='emphasis'>And how has that impacted you and [CN]?</span></strong><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their same area. If I could show you what they're doing, would you be open to talking about this further?",
+        you: "Gotcha! So <strong>[N]</strong>, Just so I understand your situation a little better. <span class='pause'>--</span> What's your current approach to renewing your electricity agreements <span class='pause'>--</span> do you handle it internally or work with a consultant?<br><br><strong><span class='emphasis'>And how that been?</span></strong><br><br><strong><span class='emphasis'>And what is most concerning/important to you when it comes to energy?</span></strong><br><br><strong><span class='emphasis'>And how has that impacted you and [CN]?</span></strong><br><br>I watch the markets daily and here's what I'm seeing. Rates have gone up <span class='metric'>60%</span> since 2021 <span class='pause'>--</span> Most businesses <span class='pause'>--</span> <strong>they've taken an incredible hit</strong>, but many others have been able to find <strong>other ways</strong> to pay way less than other companies in their <strong>same area</strong>. If I could show you what they're doing, would you be open to talking about this further?",
         mood: "neutral",
         responses: [
             { text: "💚 Prospect is engaged / ready for appointment", next: "closeForAppointment" },
