@@ -143,6 +143,7 @@ const scriptData = {
         mood: "neutral",
         responses: [
             { text: "📞 Call Connected", next: "hook" },
+            { text: "📞 Transferred - Decision Maker Answers", next: "main_script_start" },
             { text: "🚫 No Answer", next: "voicemail_or_hangup" }
         ]
     },
@@ -161,8 +162,7 @@ const scriptData = {
             { text: "✅ Yes, this is [N]", next: "main_script_start" },
             { text: "🗣️ Speaking", next: "main_script_start" },
             { text: "❓ Who's calling?", next: "main_script_start" },
-            { text: "👥 Gatekeeper / Not the right person", next: "gatekeeper_intro" },
-            { text: "🔄 Transferred to Decision Maker", next: "main_script_start" }
+            { text: "👥 Gatekeeper / Not the right person", next: "gatekeeper_intro" }
         ]
     },
     main_script_start: {
