@@ -201,7 +201,7 @@ const scriptData = {
         ]
     },
     pathA: {
-        you: "Perfect <span class='pause'>--</span> So I'm calling with PowerChoosers.com and I've been working closely with <strong>[CI]</strong>s across Texas with electricity agreements over the past several years <span class='pause'>--</span> How are you guys handling these sharp rate increases on your future renewals?<br><br>And quick follow-up <span class='pause'>--</span> <span class='emphasis'>do you know when your contract expires?</span>",
+        you: "Perfect <span class='pause'>--</span> So <strong>[N]</strong> I've been working closely with <strong>[CI]</strong> across Texas with electricity agreements <span class='pause'>--</span> and we're about to see an unprecedented dip in the market in the next few months <span class='pause'>--</span><br><br><strong><span class='emphasis'>Is getting the best price for your next renewal a priority for you and [CN]?</span></strong><br><br><strong><span class='emphasis'>Do you know when your contract expires?</span></strong><br><br><strong><span class='emphasis'>So since rates have gone up tremendously over the past 5 years, how are you guys handling such a sharp increase on your future renewals?</span></strong>",
         mood: "neutral",
         responses: [
             { text: "😰 Struggling / It's tough", next: "resStruggle" },
@@ -221,7 +221,7 @@ const scriptData = {
         ]
     },
     resStruggle: {
-        you: "Yeah, I'm hearing that from a lot of <strong>[CT]</strong>s. The thing is, most companies are approaching renewals the same way they did pre-2021, but the rules have completely changed. Do you currently have a strategy in place to help mitigate these increases?",
+        you: "Yeah, I'm hearing that from a lot of <strong>[CT]</strong>. The thing is, most companies are approaching renewals the same way they did pre-2021, but the rules have completely changed. Do you currently have a strategy in place to help mitigate these increases?",
         mood: "challenging",
         responses: [
             { text: "🎯 Continue to Discovery", next: "discovery" }
@@ -406,7 +406,7 @@ const scriptData = {
         ]
     },
     getEmail: {
-        you: "Great! I'll put together a case study specific to <span class='emphasis'>[TIA]</span>s. It takes me about 10 minutes to put together, and it'll give you a baseline understanding of where your company stands competitively. I can email that over by tomorrow, and if you see value in diving deeper, we can schedule a brief follow-up. What's a good email for you?",
+        you: "Great! I'll put together a case study specific to <span class='emphasis'>[TIA]</span>. It takes me about 10 minutes to put together, and it'll give you a baseline understanding of where your company stands competitively. I can email that over by tomorrow, and if you see value in diving deeper, we can schedule a brief follow-up. What's a good email for you?",
         mood: "unsure",
         responses: [
             { text: "📧 Provide email address", next: "emailFollowUp" },
@@ -475,7 +475,9 @@ function applyPlaceholders(text) {
 function updateScript() {
     for (const inputId in inputMap) {
         const placeholderKey = inputMap[inputId];
-        const inputValue = gId(inputId).value;
+        const inputElement = gId(inputId);
+        // Use actual input value if present, otherwise use placeholder text
+        const inputValue = inputElement.value || inputElement.placeholder;
         placeholders[placeholderKey] = inputValue;
     }
     // Alias for consistency in script (e.g., [TIA] for [CI])
