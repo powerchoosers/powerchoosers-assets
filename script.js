@@ -40,18 +40,7 @@ import {
     getFirestore, 
     doc, 
     setDoc, 
-    getDoc, 
-    getDocs,
-    collection,
-    query,
-    orderBy,
-    limit,
-    serverTimestamp, 
-    updateDoc, 
-    deleteDoc,
-    arrayUnion,
-    Timestamp,
-    where 
+    serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 
 // Your Firebase project configuration
@@ -81,26 +70,20 @@ function populateFromURL() {
     const title = params.get('title');
     const company = params.get('company');
     const industry = params.get('industry');
-    const phone = params.get('phone');
-    const email = params.get('email');
     const accountId = params.get('accountId');
     const contactId = params.get('contactId');
 
     if (name) {
         gId('input-name').value = name;
-        placeholders['N'] = name;
     }
     if (title) {
         gId('input-title').value = title;
-        placeholders['CT'] = title;
     }
     if (company) {
         gId('input-company-name').value = company;
-        placeholders['CN'] = company;
     }
     if (industry) {
         gId('input-company-industry').value = industry;
-        placeholders['CI'] = industry;
     }
 
     // Store CRM identifiers for later use
