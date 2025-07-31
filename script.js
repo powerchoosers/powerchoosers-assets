@@ -1,5 +1,7 @@
+// Global state for search functionality
 let currentSearchType = '';
 let activeButton = null;
+let currentProspect = {}; // New object to hold CRM data from URL
 
 // Helper to get element by ID (saves characters and improves readability)
 const gId = id => document.getElementById(id);
@@ -31,6 +33,120 @@ const inputMap = {
     'input-benefit': 'SB',
     'input-pain': 'PP'
 };
+
+// --- START: New functionality to read CRM data from URL and save notes to Firebase ---
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+import { 
+    getFirestore, 
+    doc, 
+    setDoc, 
+    getDoc, 
+    getDocs,
+    collection,
+    query,
+    orderBy,
+    limit,
+    serverTimestamp, 
+    updateDoc, 
+    deleteDoc,
+    arrayUnion,
+    Timestamp,
+    where 
+} from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
+
+// Your Firebase project configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBKg28LJZgyI3J--I8mnQXOLGN5351tfaE",
+    authDomain: "power-choosers-crm.firebaseapp.com",
+    projectId: "power-choosers-crm",
+    storageBucket: "power-choosers-crm.firebasestorage.app",
+    messagingSenderId: "792458658491",
+    appId: "1:792458658491:web:a197a4a8ce7a860cfa1f9e",
+    measurementId: "G-XEC3BFHJHW"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Utility function to generate unique IDs
+const generateId = function() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+
+// Function to populate inputs from URL parameters
+function populateFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const title = params.get('title');
+    const company = params.get('company');
+    const industry = params.get('industry');
+    const phone = params.get('phone');
+    const email = params.get('email');
+    const accountId = params.get('accountId');
+    const contactId = params.get('contactId');
+
+    if (name) {
+        gId('input-name').value = name;
+        placeholders['N'] = name;
+    }
+    if (title) {
+        gId('input-title').value = title;
+        placeholders['CT'] = title;
+    }
+    if (company) {
+        gId('input-company-name').value = company;
+        placeholders['CN'] = company;
+    }
+    if (industry) {
+        gId('input-company-industry').value = industry;
+        placeholders['CI'] = industry;
+    }
+
+    // Store CRM identifiers for later use
+    currentProspect.accountId = accountId;
+    currentProspect.contactId = contactId;
+    currentProspect.accountName = company;
+    currentProspect.contactName = name;
+
+    updateScript();
+}
+
+// Function to save call notes to CRM activities collection
+async function saveCallNotesToCRM() {
+    if (!currentProspect.accountId || !currentProspect.contactId) {
+        console.warn("Cannot save notes: Missing accountId or contactId from URL.");
+        return;
+    }
+
+    const notesContent = gId('call-notes').value.trim();
+    if (notesContent.length === 0) {
+        console.log("No notes to save.");
+        return;
+    }
+
+    try {
+        const activityId = generateId();
+        const activityData = {
+            id: activityId,
+            type: 'call_note',
+            description: `Call note for ${currentProspect.contactName} at ${currentProspect.accountName}`,
+            noteContent: notesContent,
+            accountId: currentProspect.accountId,
+            accountName: currentProspect.accountName,
+            contactId: currentProspect.contactId,
+            contactName: currentProspect.contactName,
+            createdAt: serverTimestamp()
+        };
+
+        await setDoc(doc(db, 'activities', activityId), activityData);
+        console.log('Call notes saved to CRM!');
+    } catch (error) {
+        console.error('Error saving call notes to Firebase:', error);
+    }
+}
+// --- END: New Firebase functionality ---
+
 
 // --- RESTORED SEARCH FUNCTIONS ---
 function openSearch(type, event) { // 'event' parameter is correctly passed by addEventListener
@@ -194,7 +310,7 @@ const scriptData = {
         ]
     },
     voicemail: {
-        you: "Good afternoon/morning <strong>[N]</strong>, this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. The email should be coming from Lewis Patterson that's (L.E.W.I.S) Thank you so much and you have a great day.",
+        you: "Good afternoon/morning [N], this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. The email should be coming from Lewis Patterson that's (L.E.W.I.S) Thank you so much and you have a great day.""Good afternoon/morning <strong>[N]</strong>, this is Lewis and I was told to speak with you. You can give me a call at 817-409-4215. Also, I shot you over a short email kinda explaining why I'm reaching out to you today. The email should be coming from Lewis Patterson that's (L.E.W.I.S) Thank you so much and you have a great day.",
         mood: "neutral",
         responses: [
             { text: "🔄 End Call / Start New Call", next: "start" }
@@ -432,7 +548,7 @@ const scriptData = {
         you: "🎉 <strong>Call Completed Successfully!</strong><br><br>Remember to track:<br>• Decision maker level<br>• Current contract status and timeline<br>• Pain points identified<br>• Interest level (Hot/Warm/Cold/Future)<br>• Next action committed<br>• Best callback timing<br><br><span class='emphasis'>Great job keeping the energy high and positioning as a strategic advisor!</span>",
         mood: "positive",
         responses: [
-            { text: "🔄 Start New Call", next: "start" }
+            { text: "🔄 Start New Call", next: "start", action: "saveNotes" }
         ]
     },
     transfer_dialing: {
@@ -520,43 +636,6 @@ function startCall() {
 }
 
 /**
- * Displays the content and responses for the `currentStep`.
- * Applies placeholders to the script text and response button texts.
- */
-function displayCurrentStep() {
-    const step = scriptData[currentStep];
-    if (!step) return; // Should not happen if scriptData is well-defined
-    
-    // Apply placeholders before setting innerHTML for the main script display
-    scriptDisplay.innerHTML = applyPlaceholders(step.you);
-    scriptDisplay.className = `script-display mood-${step.mood}`;
-    
-    // Clear and render response buttons based on the current step
-    if (currentStep !== 'start' && currentStep !== 'dialing') {
-        responsesContainer.innerHTML = '';
-        step.responses.forEach(response => {
-            const button = document.createElement('button');
-            button.className = 'response-btn';
-            // Apply placeholders to button text as well
-            button.innerHTML = applyPlaceholders(response.text); 
-            button.onclick = () => selectResponse(response.next);
-            responsesContainer.appendChild(button);
-        });
-    } else if (currentStep === 'start') {
-        // Special handling for the initial 'Dial' button
-        responsesContainer.innerHTML = '';
-        const dialButton = document.createElement('button');
-        dialButton.className = 'dial-button';
-        dialButton.innerHTML = `<svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02L6.62 10.79z"/></svg>Dial`;
-        dialButton.onclick = startCall;
-        responsesContainer.appendChild(dialButton);
-    }
-    
-    // Enable/disable back button based on history
-    backBtn.disabled = history.length === 0;
-}
-
-/**
  * Navigates to the next script step.
  * @param {string} nextStep The ID of the next script step.
  */
@@ -565,6 +644,13 @@ function selectResponse(nextStep) {
         history.push(currentStep); // Add current step to history
         currentStep = nextStep;
         displayCurrentStep();
+    }
+
+    const currentStepData = scriptData[currentStep];
+    const selectedResponse = currentStepData.responses.find(res => res.next === nextStep);
+
+    if (selectedResponse && selectedResponse.action === 'saveNotes') {
+        saveCallNotesToCRM();
     }
 }
 
@@ -598,6 +684,8 @@ function restart() {
     }
     placeholders['OP'] = 'the responsible party'; // Reset default
     placeholders['XX'] = '$XX.00/40%'; // Reset default
+
+    gId('call-notes').value = ''; // Clear call notes on restart
 
     displayCurrentStep(); // Redraw to show cleared state
 }
@@ -642,10 +730,6 @@ function clearNotes() {
 }
 
 // Initialize the script display when the page loads
-displayCurrentStep();
-
-// --- NEW: Add event listeners to search app buttons dynamically ---
-// This ensures the openSearch function is called with the correct 'event' object.
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the elements exist before adding listeners to prevent errors on pages without them
     const googleBtn = gId('google-button');
@@ -664,4 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (beenverifiedBtn) {
         beenverifiedBtn.addEventListener('click', (e) => openSearch('beenverified', e));
     }
+    
+    populateFromURL();
+    displayCurrentStep();
 });
