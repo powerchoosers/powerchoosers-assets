@@ -4,97 +4,6 @@ let activeButton = null;
 // Helper to get element by ID (saves characters and improves readability)
 const gId = id => document.getElementById(id);
 
-// HubSpot API Configuration
-const HUBSPOT_API_KEY = 'pat-na2-b24983c7-d9f3-4143-a2c7-6002f37a4822';
-const HUBSPOT_API_BASE = 'https://api.hubapi.com/crm/v3/objects';
-
-// HubSpot Integration Functions
-async function saveToHubSpot(outcome = 'New Lead') {
-    const prospectData = {
-        name: gId('input-name').value.trim(),
-        title: gId('input-title').value.trim(),
-        company: gId('input-company-name').value.trim(),
-        industry: gId('input-company-industry').value.trim(),
-        benefit: gId('input-benefit').value.trim(),
-        pain: gId('input-pain').value.trim()
-    };
-    
-    const callNotes = gId('call-notes').value.trim();
-    
-    // Validation
-    if (!prospectData.name || !prospectData.company) {
-        alert('❌ Please fill in at least Contact Name and Company Name before saving to HubSpot');
-        return;
-    }
-    
-    // Prepare data for HubSpot
-    const nameParts = prospectData.name.split(' ');
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || '';
-    
-    const hubspotData = {
-        properties: {
-            firstname: firstName,
-            lastname: lastName,
-            company: prospectData.company,
-            jobtitle: prospectData.title,
-            industry: prospectData.industry,
-            hs_lead_status: outcome,
-            notes_last_contacted: `${callNotes}\n\nCall Outcome: ${outcome}\nScript Stage: ${currentStep}\nTimestamp: ${new Date().toLocaleString()}`,
-            lifecyclestage: 'lead',
-            lead_source: 'Cold Call - Power Choosers Script'
-        }
-    };
-    
-    try {
-        // Show loading state
-        const statusDiv = gId('hubspot-status');
-        statusDiv.textContent = '⏳ Saving to HubSpot...';
-        statusDiv.style.opacity = '1';
-        
-        const response = await fetch(`${HUBSPOT_API_BASE}/contacts`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${HUBSPOT_API_KEY}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(hubspotData)
-        });
-        
-        if (response.ok) {
-            const result = await response.json();
-            statusDiv.textContent = '✅ Successfully saved to HubSpot!';
-            statusDiv.style.color = '#22c55e';
-            console.log('HubSpot Contact Created:', result);
-        } else {
-            const error = await response.json();
-            statusDiv.textContent = '❌ Failed to save to HubSpot';
-            statusDiv.style.color = '#ef4444';
-            console.error('HubSpot Error:', error);
-        }
-        
-        setTimeout(() => statusDiv.style.opacity = '0', 4000);
-        
-    } catch (error) {
-        const statusDiv = gId('hubspot-status');
-        statusDiv.textContent = '❌ Connection error';
-        statusDiv.style.color = '#ef4444';
-        statusDiv.style.opacity = '1';
-        setTimeout(() => statusDiv.style.opacity = '0', 4000);
-        console.error('HubSpot API Error:', error);
-    }
-}
-
-// Auto-save to HubSpot on successful call completion
-function autoSaveToHubSpot(outcome) {
-    const prospectName = gId('input-name').value.trim();
-    const companyName = gId('input-company-name').value.trim();
-    
-    if (prospectName && companyName) {
-        saveToHubSpot(outcome);
-    }
-}
-
 // Placeholders object - short keys for brevity in scriptData, mapped to full input IDs
 const placeholders = {
     'N': '', // Contact Name
@@ -523,7 +432,6 @@ const scriptData = {
         you: "🎉 <strong>Call Completed Successfully!</strong><br><br>Remember to track:<br>• Decision maker level<br>• Current contract status and timeline<br>• Pain points identified<br>• Interest level (Hot/Warm/Cold/Future)<br>• Next action committed<br>• Best callback timing<br><br><span class='emphasis'>Great job keeping the energy high and positioning as a strategic advisor!</span>",
         mood: "positive",
         responses: [
-            { text: "💾 Save to HubSpot & Start New Call", next: "start", action: () => autoSaveToHubSpot('Successful Call') },
             { text: "🔄 Start New Call", next: "start" }
         ]
     },
@@ -628,7 +536,7 @@ function displayCurrentStep() {
             button.className = 'response-btn';
             // Apply placeholders to button text as well
             button.innerHTML = applyPlaceholders(response.text); 
-            button.onclick = () => selectResponse(response.next, response.action);
+            button.onclick = () => selectResponse(response.next);
             responsesContainer.appendChild(button);
         });
     } else if (currentStep === 'start') {
@@ -649,16 +557,10 @@ function displayCurrentStep() {
  * Navigates to the next script step.
  * @param {string} nextStep The ID of the next script step.
  */
-function selectResponse(nextStep, actionFunction = null) {
+function selectResponse(nextStep) {
     if (nextStep && scriptData[nextStep]) {
         history.push(currentStep); // Add current step to history
         currentStep = nextStep;
-        
-        // Execute any action function (like saving to HubSpot)
-        if (actionFunction && typeof actionFunction === 'function') {
-            actionFunction();
-        }
-        
         displayCurrentStep();
     }
 }
